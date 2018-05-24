@@ -11,6 +11,9 @@ import { CustomMaterialModule } from "./core/material.module";
 import { AppRoutingModule } from "./core/app.routing.module";
 
 import { UserService } from './user/user.service';
+import { UrlPermission } from "./urlPermission/url.permission";
+import { AuthService } from "./services/auth.service";
+import { AccountService } from "./services/account.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { UserService } from './user/user.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, UrlPermission, AuthService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
