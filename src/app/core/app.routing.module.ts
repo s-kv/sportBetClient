@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from "../user/user.component";
 import { LoginComponent } from "../login/login.component";
 import {UrlPermission} from "../urlPermission/url.permission";
+import { ProfileComponent } from "../profile/profile.component";
+import { RegisterComponent } from "../register/register.component";
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [UrlPermission] },

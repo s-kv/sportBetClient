@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from "../model/user";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -7,19 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  user: User = new User();
+  errorMessage : string;
+  constructor(private authService :AuthService, private router: Router) { }
 
-  constructor(private router : Router) {
-
-  }
-
-  username : string;
-  password : string;
-
-  login() : void {
-    if (this.username == 'admin' && this.password == 'admin') {
-      this.router.navigate(["user"]);
-    } else {
-      alert("Invalid credentials");
-    }
+  login(){
+    this.authService.logIn(this.user)
+        .subscribe(data=>{
+              this.router.navigate(['/profile']);
+            }, err=>{
+              this.errorMessage="error :  Username or password is incorrect";
+            }
+        )
   }
 }
