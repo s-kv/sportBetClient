@@ -11,7 +11,7 @@ export class AccountService {
   constructor(public http: Http) { }
 
   createAccount(user : User){
-    return this.http.post(AppComponent.API_URL+'/account/register',user)
+    return this.http.post(AppComponent.API_URL + '/account/register',user)
       .pipe(map(resp=>resp.json()));
   }
 }

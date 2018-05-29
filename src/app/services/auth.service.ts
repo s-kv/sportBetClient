@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Http, Headers, RequestOptions, Response} from '@angular/http';
+import {map} from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
 import { User } from "../model/user";
@@ -27,6 +27,7 @@ export class AuthService {
         if (user) {
           // store user details  in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUserBase64Credential', base64Credential);
         }
       })
     );
@@ -34,7 +35,7 @@ export class AuthService {
 
   logOut() {
     // remove user from local storage to log user out
-    return this.http.post(AppComponent.API_URL+"logout",{}).pipe(
+    return this.http.post(AppComponent.API_URL + "/logout",{}).pipe(
       map((response: Response) => {
         localStorage.removeItem('currentUser');
       })

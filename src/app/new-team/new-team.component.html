@@ -1,0 +1,81 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Добавить команду</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Short Name" [(ngModel)]="team.shortName" name="team.shortName" required>
+                    <mat-hint>Сокращенное наименование</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Long Name" [(ngModel)]="team.longName" name="team.longName" required>
+                    <mat-hint>Полное наименование</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label class="btn btn-default">
+                    <p></p>
+                    <mat-form-field >
+                      <mat-select placeholder="Выберите флаг" [(ngModel)]="team.imageURL" name="team.imageURL">
+                        <mat-option *ngFor="let flag of flagList" [value]="flag">
+                          <img src="{{flag}}" class="img-icon">
+                          {{getFlagName(flag)}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </label>
+                  <!--<p>{{ team | json }}</p>-->
+                  <!--<div *ngIf="currentFileUpload" class="progress">-->
+                    <!--<div class="progress-bar progress-bar-info progress-bar-striped"-->
+                         <!--role="progressbar" attr.aria-valuenow="{{progress.percentage}}"-->
+                         <!--aria-valuemin="0" aria-valuemax="100"-->
+                         <!--[ngStyle]="{width:progress.percentage+'%'}">-->
+                      <!--{{progress.percentage}}%</div>-->
+                  <!--</div>-->
+
+                  <!--<label class="btn btn-default">-->
+                    <!--<p> Выберить изображение флага команды: <p>-->
+                    <!--<input type="file" (change)="selectFile($event)">-->
+                  <!--</label>-->
+
+                  <!--<button class="btn btn-success" [disabled]="!selectedFiles"-->
+                          <!--(click)="upload()">Upload</button>-->
+
+                  <!--<div [hidden]="!team.imageURL">-->
+                    <!--<div class="panel panel-primary">-->
+                      <!--<div class="panel-heading">Загруженное изображение</div>-->
+                      <!--<div class="panel-body">-->
+                        <!--<img mat-list-avatar src="{{team.imageURL}}" alt="{{team.imageURL}}"/>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <img src="{{team.imageURL}}" class="img-full">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="newTeam()" color="primary" align="end">Добавить</button>
+  </mat-card-actions>
+
+</mat-card>
