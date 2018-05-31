@@ -29,8 +29,15 @@ export class GameService {
     );
   }
 
-  public newGame(team: Game) {
-    return this.http.post(this.API_URL, team).pipe(
+  public newGame(game: Game) {
+    return this.http.post(this.API_URL, game).pipe(
+      map(response => response)
+    );
+  }
+
+  public updateGame(game: Game) {
+    console.log(game);
+    return this.http.put(this.API_URL + '/' + game.id, game).pipe(
       map(response => response)
     );
   }

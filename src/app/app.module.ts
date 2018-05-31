@@ -23,7 +23,7 @@ import {UploadFileService} from "./services/upload-file.service";
 import {Interceptor} from "./core/app.interceptor";
 import {NewGameComponent} from "./game/new-game/new-game.component";
 import {GameService} from "./services/game.service";
-import {GameDetailsComponent} from "./game/game-details/game-details.component";
+import {GameDetailsComponent, ScoreDialogComponent} from "./game/game-details/game-details.component";
 
 @NgModule({
   declarations: [
@@ -34,8 +34,11 @@ import {GameDetailsComponent} from "./game/game-details/game-details.component";
     UserComponent,
     NewTeamComponent,
     NewGameComponent,
-    GameDetailsComponent
+    GameDetailsComponent,
+    ScoreDialogComponent
+
   ],
+  entryComponents: [ScoreDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

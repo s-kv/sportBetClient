@@ -28,6 +28,9 @@
               <td>
                 <h4>Дата и время матча</h4>
               </td>
+              <td>
+                <h4>Действия</h4>
+              </td>
             </tr>
             <tr align="center">
               <td>
@@ -38,6 +41,19 @@
               </td>
               <td>
                 <h2>{{selectedGame.startDateTime}}</h2>
+              </td>
+              <td>
+                <p><button mat-raised-button [routerLink]="['/new-bet']" color="primary">Сделать ставку</button></p>
+                <p><button mat-raised-button (click)="openDialog()" color="primary">Указать счет</button></p>
+                <p><button mat-raised-button (click)="deleteGame()" color="accent">Удалить игру</button></p>
+              </td>
+            </tr>
+            <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
+              <td>
+                <h1>{{selectedGame.score1}}</h1>
+              </td>
+              <td>
+                <h1>{{selectedGame.score2}}</h1>
               </td>
             </tr>
           </table>

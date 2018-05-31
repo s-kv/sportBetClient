@@ -47,7 +47,7 @@ export class TeamService {
   }
 
   public static getImageUrl(filename : string) : string {
-    return AppComponent.API_URL + '/' + filename;
+    return AppComponent.API_URL + filename;
   }
 
   private static prepareImageUrl(url : string) : string {

@@ -34,7 +34,7 @@ export class NewTeamComponent implements OnInit {
 
   public newTeam() {
     this.teamService.newTeam(this.team).subscribe(data => {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/new-game']);
       }, err => {
         console.log(err);
         this.errorMessage = err;
