@@ -1,0 +1,39 @@
+.page-title {
+  margin: 10px;
+}
+
+.example-container {
+  width: inherit;
+  height: 700px;
+  margin: 10px;
+  border: 1px solid #555;
+}
+
+.side-nav {
+  width: 300px;
+  border-right: 1px solid rgba(0,0,0,.04);
+}
+
+.side-nav-content {
+  margin:auto;
+}
+
+.img-icon {
+  height: 10%;
+  width: 10%;
+  vertical-align: middle;
+}
+
+.img-full {
+  margin:auto;
+}
+
+.game-table {
+  width: 80%;
+  padding-left: 10%;
+}
+
+.game-table-cell {
+  align: center;
+}
+

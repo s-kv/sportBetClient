@@ -1,0 +1,48 @@
+<h2 class="page-title">
+  <button mat-mini-fab [routerLink]="['/new-game']">+</button>
+  Список игр
+</h2>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" class="side-nav" opened>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let game of gameList" (click)="selectedGame = game">
+        <p matLine>
+          <img [src]="game.team1.imageURL" class="img-icon"/> {{game.team1.longName}} - <img [src]="game.team2.imageURL" class="img-icon"/> {{game.team2.longName}}
+        </p>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="side-nav-content">
+    <div>
+      <div *ngIf="selectedGame">
+        <div>
+          <table class="game-table" cellspacing="10">
+            <tr align="center">
+              <td>
+                <h1>{{selectedGame.team1.longName}}</h1>
+              </td>
+              <td>
+                <h1>{{selectedGame.team2.longName}}</h1>
+              </td>
+              <td>
+                <h4>Дата и время матча</h4>
+              </td>
+            </tr>
+            <tr align="center">
+              <td>
+                <img src="{{selectedGame.team1.imageURL}}" class="img-full">
+              </td>
+              <td>
+                <img src="{{selectedGame.team2.imageURL}}" class="img-full">
+              </td>
+              <td>
+                <h2>{{selectedGame.startDateTime}}</h2>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

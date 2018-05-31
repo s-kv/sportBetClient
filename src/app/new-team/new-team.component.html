@@ -38,32 +38,7 @@
                       </mat-select>
                     </mat-form-field>
                   </label>
-                  <!--<p>{{ team | json }}</p>-->
-                  <!--<div *ngIf="currentFileUpload" class="progress">-->
-                    <!--<div class="progress-bar progress-bar-info progress-bar-striped"-->
-                         <!--role="progressbar" attr.aria-valuenow="{{progress.percentage}}"-->
-                         <!--aria-valuemin="0" aria-valuemax="100"-->
-                         <!--[ngStyle]="{width:progress.percentage+'%'}">-->
-                      <!--{{progress.percentage}}%</div>-->
-                  <!--</div>-->
-
-                  <!--<label class="btn btn-default">-->
-                    <!--<p> Выберить изображение флага команды: <p>-->
-                    <!--<input type="file" (change)="selectFile($event)">-->
-                  <!--</label>-->
-
-                  <!--<button class="btn btn-success" [disabled]="!selectedFiles"-->
-                          <!--(click)="upload()">Upload</button>-->
-
-                  <!--<div [hidden]="!team.imageURL">-->
-                    <!--<div class="panel panel-primary">-->
-                      <!--<div class="panel-heading">Загруженное изображение</div>-->
-                      <!--<div class="panel-body">-->
-                        <!--<img mat-list-avatar src="{{team.imageURL}}" alt="{{team.imageURL}}"/>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                </td>
+                 </td>
               </tr>
             </table>
           </td>
@@ -76,6 +51,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="newTeam()" color="primary" align="end">Добавить</button>
+    <button mat-raised-button [routerLink]="['/new-game']" color="accent">Назад</button>
   </mat-card-actions>
-
 </mat-card>

@@ -21,6 +21,9 @@ import {NewTeamComponent} from "./new-team/new-team.component";
 import {TeamService} from "./services/team.service";
 import {UploadFileService} from "./services/upload-file.service";
 import {Interceptor} from "./core/app.interceptor";
+import {NewGameComponent} from "./game/new-game/new-game.component";
+import {GameService} from "./services/game.service";
+import {GameDetailsComponent} from "./game/game-details/game-details.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {Interceptor} from "./core/app.interceptor";
     ProfileComponent,
     RegisterComponent,
     UserComponent,
-    NewTeamComponent
+    NewTeamComponent,
+    NewGameComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,7 @@ import {Interceptor} from "./core/app.interceptor";
     HttpClientModule,
     HttpModule
   ],
-  providers: [UserService, UrlPermission, AuthService, AccountService, TeamService, UploadFileService,
+  providers: [UserService, UrlPermission, AuthService, AccountService, TeamService, GameService, UploadFileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
