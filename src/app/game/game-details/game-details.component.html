@@ -6,7 +6,7 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav mode="side" class="side-nav" opened>
     <mat-nav-list>
-      <mat-list-item *ngFor="let game of gameList" (click)="selectedGame = game">
+      <mat-list-item *ngFor="let game of gameList" (click)="selectGame(game)">
         <p matLine>
           <img [src]="game.team1.imageURL" class="img-icon"/> {{game.team1.longName}} - <img [src]="game.team2.imageURL" class="img-icon"/> {{game.team2.longName}}
         </p>
@@ -43,9 +43,13 @@
                 <h2>{{selectedGame.startDateTime}}</h2>
               </td>
               <td>
-                <p><button mat-raised-button [routerLink]="['/new-bet']" color="primary">Сделать ставку</button></p>
-                <p><button mat-raised-button (click)="openDialog()" color="primary">Указать счет</button></p>
-                <p><button mat-raised-button (click)="deleteGame()" color="accent">Удалить игру</button></p>
+                <p><button mat-raised-button (click)="openBetScoreDialog()" color="accent">Моя ставка</button></p>
+                <h2 *ngIf="bet">{{bet.score1}} : {{bet.score2}}</h2>
+              </td>
+            </tr>
+            <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
+              <td colspan="2">
+                <h1>Результат</h1>
               </td>
             </tr>
             <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
@@ -54,6 +58,15 @@
               </td>
               <td>
                 <h1>{{selectedGame.score2}}</h1>
+              </td>
+            </tr>
+            <tr align="center">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <p><button mat-raised-button (click)="openGameScoreDialog()" color="primary">Указать счет</button><p>
+                <p><button mat-raised-button (click)="deleteGame()" color="accent">Удалить игру</button><p>
               </td>
             </tr>
           </table>

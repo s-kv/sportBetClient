@@ -3,6 +3,14 @@ import {Router} from "@angular/router";
 import {Game} from "../../model/game";
 import {GameService} from "../../services/game.service";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {BetService} from "../../services/bet.service";
+import {Bet} from "../../model/bet";
+import {User} from "../../model/user";
+
+export class ScoreBuffer {
+  score1: number;
+  score2: number;
+}
 
 @Component({
   selector: 'game-details',
@@ -11,23 +19,37 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class GameDetailsComponent implements OnInit {
 
+  private currentUser: User;
+
   private selectedGame: Game;
-  private editedGame: Game;
+  private bet: Bet;
+  private scoreBuf: ScoreBuffer;
   private gameList: Game[];
   private errorMessage: string;
 
   constructor(private gameService: GameService,
+              private betService: BetService,
               public router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() : void {
     this.gameService.getGames().subscribe(data => {
-      console.log(data);
       this.gameList = data;
     }, err => {
       console.log(err);
       // this.errorMessage = err;
     });
+  }
+
+  selectGame(game: Game) : void {
+    this.selectedGame = game;
+    this.betService.getBetByUser(this.currentUser.id).subscribe(data => {
+        this.bet = data.filter(x => x.game.id == this.selectedGame.id)[0] }
+      , err => {
+        this.errorMessage = err;
+      });
   }
 
   deleteGame() : void {
@@ -41,24 +63,60 @@ export class GameDetailsComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
-    this.editedGame = new Game();
-    this.editedGame.score1 = this.selectedGame.score1;
-    this.editedGame.score2 = this.selectedGame.score2;
+  openGameScoreDialog(): void {
+    this.scoreBuf = new ScoreBuffer();
+    this.scoreBuf.score1 = this.selectedGame.score1;
+    this.scoreBuf.score2 = this.selectedGame.score2;
 
     let dialogRef = this.dialog.open(ScoreDialogComponent, {
       width: '250px',
-      data: { selectedGame: this.editedGame }
+      data: { scoreBuf: this.scoreBuf }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.selectedGame.score1 = this.editedGame.score1;
-        this.selectedGame.score2 = this.editedGame.score2;
+        this.selectedGame.score1 = this.scoreBuf.score1;
+        this.selectedGame.score2 = this.scoreBuf.score2;
         this.gameService.updateGame(this.selectedGame).subscribe(data => data
           , err => {
             this.errorMessage = err;
           });
+      }
+    });
+  }
+
+  openBetScoreDialog(): void {
+    this.scoreBuf = new ScoreBuffer();
+    if (this.bet != null) {
+      this.scoreBuf.score1 = this.bet.score1;
+      this.scoreBuf.score2 = this.bet.score2;
+    }
+
+    let dialogRef = this.dialog.open(ScoreDialogComponent, {
+      width: '250px',
+      data: { scoreBuf: this.scoreBuf }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (this.bet != null) {
+          this.bet.score1 = this.scoreBuf.score1;
+          this.bet.score2 = this.scoreBuf.score2;
+          this.betService.updateBet(this.bet).subscribe(data => data
+            , err => {
+              this.errorMessage = err;
+            });
+        } else {
+          this.bet = new Bet();
+          this.bet.game = this.selectedGame;
+          this.bet.user = this.currentUser;
+          this.bet.score1 = this.scoreBuf.score1;
+          this.bet.score2 = this.scoreBuf.score2;
+          this.betService.newBet(this.bet).subscribe(data => this.bet.id = data.id
+            , err => {
+              this.errorMessage = err;
+            });
+        }
       }
     });
   }
