@@ -7,8 +7,9 @@
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
-
-      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logOut()"></span> LogOut</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logTest()"></span>2!LogOut</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logTest()"></span>!LogOut</a></li>
+      <button mat-raised-button (click)="logOut()" color="primary">Вход</button>
     </ul>
   </div>
 </nav>
@@ -18,7 +19,7 @@
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3">  <strong>{{currentUser.fullName}}</strong>, Welcome to your app </h1>
-    <p class="lead"> welcome to your profile
+    <p class="lead"> welcome to your profile!
     </p>
     <div class="row">
 

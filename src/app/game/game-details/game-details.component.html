@@ -26,9 +26,6 @@
                 <h1>{{selectedGame.team2.longName}}</h1>
               </td>
               <td>
-                <h4>Дата и время матча</h4>
-              </td>
-              <td>
                 <h4>Действия</h4>
               </td>
             </tr>
@@ -40,11 +37,13 @@
                 <img src="{{selectedGame.team2.imageURL}}" class="img-full">
               </td>
               <td>
-                <h2>{{selectedGame.startDateTime}}</h2>
-              </td>
-              <td>
                 <p><button mat-raised-button (click)="openBetScoreDialog()" color="accent">Моя ставка</button></p>
                 <h2 *ngIf="bet">{{bet.score1}} : {{bet.score2}}</h2>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" colspan="2">
+                <h4>Дата и время матча: {{selectedGame.startDateTime}}</h4>
               </td>
             </tr>
             <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
@@ -63,13 +62,13 @@
             <tr align="center">
               <td></td>
               <td></td>
-              <td></td>
               <td>
                 <p><button mat-raised-button (click)="openGameScoreDialog()" color="primary">Указать счет</button><p>
                 <p><button mat-raised-button (click)="deleteGame()" color="accent">Удалить игру</button><p>
               </td>
             </tr>
           </table>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
         </div>
       </div>
     </div>

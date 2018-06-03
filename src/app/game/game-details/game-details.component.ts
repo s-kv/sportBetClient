@@ -44,11 +44,12 @@ export class GameDetailsComponent implements OnInit {
   }
 
   selectGame(game: Game) : void {
+    this.errorMessage = null;
     this.selectedGame = game;
     this.betService.getBetByUser(this.currentUser.id).subscribe(data => {
         this.bet = data.filter(x => x.game.id == this.selectedGame.id)[0] }
       , err => {
-        this.errorMessage = err;
+        this.errorMessage = err.error;
       });
   }
 
@@ -58,7 +59,7 @@ export class GameDetailsComponent implements OnInit {
       this.selectedGame = null;
       this.router.navigate(['/game-details'])
       , err => {
-      this.errorMessage = err;
+      this.errorMessage = err.error;
       }
     });
   }
@@ -79,7 +80,7 @@ export class GameDetailsComponent implements OnInit {
         this.selectedGame.score2 = this.scoreBuf.score2;
         this.gameService.updateGame(this.selectedGame).subscribe(data => data
           , err => {
-            this.errorMessage = err;
+            this.errorMessage = err.error;
           });
       }
     });
@@ -104,7 +105,7 @@ export class GameDetailsComponent implements OnInit {
           this.bet.score2 = this.scoreBuf.score2;
           this.betService.updateBet(this.bet).subscribe(data => data
             , err => {
-              this.errorMessage = err;
+              this.errorMessage = err.error;
             });
         } else {
           this.bet = new Bet();
@@ -114,7 +115,7 @@ export class GameDetailsComponent implements OnInit {
           this.bet.score2 = this.scoreBuf.score2;
           this.betService.newBet(this.bet).subscribe(data => this.bet.id = data.id
             , err => {
-              this.errorMessage = err;
+              this.errorMessage = err.error;
             });
         }
       }
