@@ -32,15 +32,19 @@ export class NewGameComponent implements OnInit {
   }
 
   public newGame() {
-    this.game.startDateTime = ("0" + this.dateStart.getDate()).slice(-2) + "-" + ("0"+(this.dateStart.getMonth()+1)).slice(-2) + "-" +
-      ("0" + this.dateStart.getFullYear()).slice(-2) + " " + this.timeStart;
-    console.log(this.game.startDateTime);
-    this.gameService.newGame(this.game).subscribe(data => {
-        this.router.navigate(['/game-details']);
-      }, err => {
-        console.log(err);
-        this.errorMessage = err;
-      }
-    )
+    if (this.dateStart == null || this.timeStart == null) {
+      this.errorMessage = 'Укажите дату и время начала матча!';
+    } else {
+      this.game.startDateTime = ("0" + this.dateStart.getDate()).slice(-2) + "-" + ("0" + (this.dateStart.getMonth() + 1)).slice(-2) + "-" +
+        ("0" + this.dateStart.getFullYear()).slice(-2) + " " + this.timeStart;
+      console.log(this.game.startDateTime);
+      this.gameService.newGame(this.game).subscribe(data => {
+          this.router.navigate(['/game-details']);
+        }, err => {
+          console.log(err);
+          this.errorMessage = err.error.message;
+        }
+      );
+    }
   }
 }

@@ -5,8 +5,9 @@
         <span class="align-center"></span>
         <span class="example-spacer"></span>
 
-        <button mat-button [routerLink]="['/profile']">Личный кабинет</button>
+        <button mat-button [routerLink]="['/profile']">Рейтинг</button>
         <button mat-button [routerLink]="['/game-details']">Список игр</button>
+        <button mat-button [routerLink]="['/rules']">Правила</button>
         <button mat-button (click)="logOut()" *ngIf="currentUser">Выйти</button>
     </mat-toolbar-row>
 </mat-toolbar>

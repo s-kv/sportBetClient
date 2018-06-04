@@ -18,7 +18,7 @@ export class LoginComponent {
         .subscribe(data=>{
               this.router.navigate(['/profile']);
             }, err=>{
-              this.errorMessage="error :  Username or password is incorrect";
+              this.errorMessage="Ошибка :  Неверное имя пользователя или пароль!";
             }
         )
   }

@@ -34,7 +34,6 @@ export class BetService {
   }
 
   public updateBet(bet: Bet) {
-    console.log(bet);
     return this.http.put(this.API_URL + '/' + bet.id, bet).pipe(
       map(response => response)
     );

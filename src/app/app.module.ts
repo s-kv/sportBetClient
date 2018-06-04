@@ -7,7 +7,6 @@ import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import {UserComponent} from './user/user.component';
 import {CustomMaterialModule} from "./core/material.module";
 import {AppRoutingModule} from "./core/app.routing.module";
 
@@ -25,6 +24,7 @@ import {GameService} from "./services/game.service";
 import {GameDetailsComponent, ScoreDialogComponent} from "./game/game-details/game-details.component";
 import {BetService} from "./services/bet.service";
 import {UserService} from "./services/user.service";
+import {RulesComponent} from "./rules/rules.component";
 
 @NgModule({
   declarations: [
@@ -32,12 +32,11 @@ import {UserService} from "./services/user.service";
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    UserComponent,
     NewTeamComponent,
     NewGameComponent,
     GameDetailsComponent,
-    ScoreDialogComponent
-
+    ScoreDialogComponent,
+    RulesComponent
   ],
   entryComponents: [ScoreDialogComponent],
   imports: [

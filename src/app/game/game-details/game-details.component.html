@@ -46,12 +46,12 @@
                 <h4>Дата и время матча: {{selectedGame.startDateTime}}</h4>
               </td>
             </tr>
-            <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
+            <tr align="center" *ngIf="selectedGame.score1 != null && selectedGame.score2 != null">
               <td colspan="2">
                 <h1>Результат</h1>
               </td>
             </tr>
-            <tr align="center" *ngIf="selectedGame.score1 && selectedGame.score2">
+            <tr align="center" *ngIf="selectedGame.score1 != null && selectedGame.score2 != null">
               <td>
                 <h1>{{selectedGame.score1}}</h1>
               </td>

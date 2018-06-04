@@ -6,7 +6,6 @@
   </mat-card-header>
   <mat-card-content>
     <form class="example-form">
-      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
       <table class="example-full-width" cellspacing="10">
         <tr>
           <td>
@@ -62,6 +61,7 @@
           </td>
         </tr>
       </table>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
     </form>
   </mat-card-content>
   <mat-card-actions>

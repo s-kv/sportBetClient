@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   selectUser(user: User) : void {
     this.errorMessage = null;
     this.selectedUser = user;
-    this.betService.getBetByUser(this.currentUser.id).subscribe(data => {
+    this.betService.getBetByUser(this.selectedUser.id).subscribe(data => {
         this.betList = data;
         this.dataSource.data = data;}
       , err => {

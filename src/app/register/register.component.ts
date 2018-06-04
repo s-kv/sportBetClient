@@ -27,8 +27,7 @@ export class RegisterComponent implements OnInit {
       this.accountService.createAccount(this.user).subscribe(data => {
             this.router.navigate(['/login']);
           }, err => {
-            console.log(err);
-            this.errorMessage = err;
+            this.errorMessage = 'Ошибка при регистрации! Попробуйте указать другое имя пользователя!';
           }
       )
     }

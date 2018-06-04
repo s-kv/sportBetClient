@@ -4,7 +4,6 @@
   </mat-card-header>
   <mat-card-content>
     <form class="example-form">
-      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
       <table class="example-full-width" cellspacing="0">
         <tr>
           <td>
@@ -35,8 +34,8 @@
           </td>
         </tr>
       </table>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
     </form>
-    <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="register()" color="primary">Ок</button>
