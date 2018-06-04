@@ -1,7 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { AuthService } from "../services/auth.service";
-import { User } from "../model/user";
-import { Router } from "@angular/router";
+import {User} from "../model/user";
+import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
+import {Bet} from "../model/bet";
+import {BetService} from "../services/bet.service";
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -11,21 +14,37 @@ import { Router } from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   currentUser: User;
-  constructor(public authService: AuthService, public router: Router) {
+  private selectedUser: User;
+  private userList: User[];
+  private betList: Bet[];
+  private errorMessage: string;
+
+  displayedColumns = ['id', 'team1', 'team2', 'gameScore', 'betScore', 'userPoints'];
+  dataSource = new MatTableDataSource<Bet>();
+
+  constructor(private userService: UserService,
+              private betService: BetService,
+              public router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
+    this.userService.getUsers().subscribe(data => {
+      this.userList = data;
+    }, err => {
+      console.log(err);
+      // this.errorMessage = err;
+    });
   }
 
-  // login out from the app
-  logOut() {
-    this.authService.logOut()
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-        });
+  selectUser(user: User) : void {
+    this.errorMessage = null;
+    this.selectedUser = user;
+    this.betService.getBetByUser(this.currentUser.id).subscribe(data => {
+        this.betList = data;
+        this.dataSource.data = data;}
+      , err => {
+        this.errorMessage = err.error;
+      });
   }
 }

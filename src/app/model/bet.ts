@@ -7,4 +7,5 @@ export class Bet {
   user: User;
   score1: number;
   score2: number;
+  points: number;
 }
