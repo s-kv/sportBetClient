@@ -21,7 +21,10 @@ import {UploadFileService} from "./services/upload-file.service";
 import {Interceptor} from "./core/app.interceptor";
 import {NewGameComponent} from "./game/new-game/new-game.component";
 import {GameService} from "./services/game.service";
-import {GameDetailsComponent, ScoreDialogComponent} from "./game/game-details/game-details.component";
+import {
+  GameDetailsComponent, ScoreDialogComponent,
+  DeleteDialogComponent
+} from "./game/game-details/game-details.component";
 import {BetService} from "./services/bet.service";
 import {UserService} from "./services/user.service";
 import {RulesComponent} from "./rules/rules.component";
@@ -36,9 +39,10 @@ import {RulesComponent} from "./rules/rules.component";
     NewGameComponent,
     GameDetailsComponent,
     ScoreDialogComponent,
-    RulesComponent
+    RulesComponent,
+    DeleteDialogComponent
   ],
-  entryComponents: [ScoreDialogComponent],
+  entryComponents: [ScoreDialogComponent, DeleteDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

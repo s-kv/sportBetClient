@@ -121,6 +121,17 @@ export class GameDetailsComponent implements OnInit {
       }
     });
   }
+
+  openDeleteDialog(): void {
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.deleteGame();
+    });
+  }
 }
 
 @Component({
@@ -128,10 +139,22 @@ export class GameDetailsComponent implements OnInit {
   templateUrl: 'score-dialog.component.html',
 })
 export class ScoreDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<ScoreDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'delete-dialog',
+  templateUrl: 'delete-dialog.component.html',
+})
+export class DeleteDialogComponent {
+
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>) { }
 
   onNoClick(): void {
     this.dialogRef.close();

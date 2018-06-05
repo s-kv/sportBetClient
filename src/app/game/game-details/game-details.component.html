@@ -48,15 +48,7 @@
             </tr>
             <tr align="center" *ngIf="selectedGame.score1 != null && selectedGame.score2 != null">
               <td colspan="2">
-                <h1>Результат</h1>
-              </td>
-            </tr>
-            <tr align="center" *ngIf="selectedGame.score1 != null && selectedGame.score2 != null">
-              <td>
-                <h1>{{selectedGame.score1}}</h1>
-              </td>
-              <td>
-                <h1>{{selectedGame.score2}}</h1>
+                <h3>Результат {{selectedGame.score1}} : {{selectedGame.score2}}</h3>
               </td>
             </tr>
             <tr align="center">
@@ -64,7 +56,7 @@
               <td></td>
               <td>
                 <p><button mat-raised-button (click)="openGameScoreDialog()" color="primary">Указать счет</button><p>
-                <p><button mat-raised-button (click)="deleteGame()" color="accent">Удалить игру</button><p>
+                <p><button mat-raised-button (click)="openDeleteDialog()" color="accent">Удалить игру</button><p>
               </td>
             </tr>
           </table>
