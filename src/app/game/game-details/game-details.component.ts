@@ -35,12 +35,21 @@ export class GameDetailsComponent implements OnInit {
   }
 
   ngOnInit() : void {
-    this.gameService.getGames().subscribe(data => {
+    this.gameService.getGamesWithUserBet(this.currentUser.id).subscribe(data => {
       this.gameList = data;
     }, err => {
       console.log(err);
       // this.errorMessage = err;
     });
+  }
+
+  getGameColor(game: Game) : string {
+    if(game.score1 != null)
+      return 'grey';
+    else if (game.bet > 0)
+      return 'black';
+    else
+      return 'red';
   }
 
   selectGame(game: Game) : void {
@@ -113,10 +122,13 @@ export class GameDetailsComponent implements OnInit {
           this.bet.user = this.currentUser;
           this.bet.score1 = this.scoreBuf.score1;
           this.bet.score2 = this.scoreBuf.score2;
-          this.betService.newBet(this.bet).subscribe(data => this.bet.id = data.id
-            , err => {
+          this.betService.newBet(this.bet).subscribe(data => {
+              this.bet.id = data.id;
+              this.selectedGame.bet = data.id;
+            }, err => {
               this.errorMessage = err.error;
-            });
+            }
+          );
         }
       }
     });

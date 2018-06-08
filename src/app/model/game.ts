@@ -1,4 +1,5 @@
 import {Team} from "./team";
+import {Bet} from "./bet";
 
 export class Game {
   id: number;
@@ -7,5 +8,6 @@ export class Game {
   score1: number;
   score2: number;
   startDateTime: string;
+  bet: number;
 }
 

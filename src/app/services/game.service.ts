@@ -17,8 +17,8 @@ export class GameService {
     return this.http.get<Game>(this.API_URL + '/' + id);
   }
 
-  public getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>(this.API_URL).pipe(
+  public getGamesWithUserBet(id: string): Observable<Game[]> {
+    return this.http.get<Game[]>(this.API_URL+  '/user/' + id).pipe(
       map(games => games.map(x =>
         {
           x.team1.imageURL = TeamService.getImageUrl(x.team1.imageURL);

@@ -25,7 +25,7 @@ export class Interceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       map(
         (err: any) => {
-          console.log(JSON.stringify(err));
+          //console.log(JSON.stringify(err));
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
               this.router.navigate(['/login']);
