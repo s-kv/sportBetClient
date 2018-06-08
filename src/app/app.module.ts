@@ -28,6 +28,9 @@ import {
 import {BetService} from "./services/bet.service";
 import {UserService} from "./services/user.service";
 import {RulesComponent} from "./rules/rules.component";
+import {ErrorHandler} from "protractor/built/exitCodes";
+import {GlobalErrorHandler} from "./core/error.interceptor";
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,14 @@ import {RulesComponent} from "./rules/rules.component";
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
+    {
+      provide : LocationStrategy,
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]

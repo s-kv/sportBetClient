@@ -17,12 +17,13 @@ const routes: Routes = [
   { path: 'rules', component: RulesComponent, canActivate: [UrlPermission] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path : '', redirectTo: 'login', pathMatch: 'full'}
+  { path : '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [
     RouterModule

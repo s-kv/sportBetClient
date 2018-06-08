@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from "rxjs/index";
-import {User} from "../model/user";
 import {map} from "rxjs/internal/operators/map";
 
 const TOKEN_HEADER_KEY = 'Authorization';
@@ -26,9 +25,10 @@ export class Interceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       map(
         (err: any) => {
+          console.log(JSON.stringify(err));
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
-              this.router.navigate(['login']);
+              this.router.navigate(['/login']);
             }
           }
           return err;
